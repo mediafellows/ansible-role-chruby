@@ -1,16 +1,16 @@
 ---
 galaxy_info:
-  author: Andrew Angelo Ang
+  author: Marc Jeanson <jeanson@mediapeers.com>
   description: Installs chruby on Ubuntu systems.
-  company: InnoHub, Inc.
+  company: Mediapeers
   license: MIT
   min_ansible_version: 1.4
   platforms:
     - name: Ubuntu
       versions:
-        - precise
         - trusty
   categories:
     - development
     - system
+    - language:ruby
 dependencies: []
