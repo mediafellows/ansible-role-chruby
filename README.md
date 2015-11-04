@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/mediapeers/ansible-role-chruby.svg?branch=master)](https://travis-ci.org/mediapeers/ansible-role-chruby)
+
 # Ansible role chruby
 
 Installs [chruby](https://github.com/postmodern/chruby) for handling multiple rubies.
