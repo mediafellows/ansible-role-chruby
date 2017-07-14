@@ -21,7 +21,7 @@
   register: chruby_extracted
 
 - name: Install chruby
-  sudo: true
+  become: true
   shell: cd /usr/src/chruby-{{ chruby_version }}/ && make install
   when: chruby_extracted | changed
   register: chruby_installed
@@ -31,7 +31,7 @@
   when: chruby_downloaded | changed
 
 - name: Attach chruby into shell
-  sudo: true
+  become: true
   template: src=chruby.sh dest=/etc/profile.d/chruby.sh
 
 #
@@ -45,9 +45,9 @@
   register: installed_chruby_version
 
 - name: Create ansible facts directory
-  sudo: true
+  become: true
   file: state=directory recurse=yes path=/etc/ansible/facts.d
 
 - name: Set chruby facts
-  sudo: true
+  become: true
   template: src=chruby.fact dest=/etc/ansible/facts.d/chruby.fact
