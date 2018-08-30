@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/mediapeers/ansible-role-chruby.svg?branch=master)](https://travis-ci.org/mediapeers/ansible-role-chruby)
+[![Build Status](https://travis-ci.com/mediapeers/ansible-role-chruby.svg?branch=master)](https://travis-ci.com/mediapeers/ansible-role-chruby)
 
 # Ansible role chruby
 
