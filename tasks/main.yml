@@ -19,18 +19,18 @@
 
 - name: Extract chruby
   shell: tar -C /usr/src -xzvf /usr/src/chruby-{{ chruby_version }}.tar.gz
-  when: chruby_downloaded | changed
+  when: chruby_downloaded.changed
   register: chruby_extracted
 
 - name: Install chruby
   become: true
   shell: cd /usr/src/chruby-{{ chruby_version }}/ && make install
-  when: chruby_extracted | changed
+  when: chruby_extracted.changed
   register: chruby_installed
 
 - name: Clean up chruby sources
   shell: rm -rf /usr/src/chruby-*
-  when: chruby_downloaded | changed
+  when: chruby_downloaded.changed
 
 - name: Attach chruby into shell
   become: true
