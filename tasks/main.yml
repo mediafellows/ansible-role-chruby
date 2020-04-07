@@ -1,11 +1,13 @@
 ---
 
 - name: Create working directory
+  become: true
   file:
     path: /usr/src
     state: directory
 
 - name: Download chruby
+  become: true
   get_url:
     url: https://github.com/postmodern/chruby/archive/v{{ chruby_version }}.tar.gz
     dest: /usr/src/chruby-{{ chruby_version }}.tar.gz
