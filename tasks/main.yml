@@ -18,6 +18,7 @@
   register: chruby_downloaded
 
 - name: Extract chruby
+  become: true
   shell: tar -C /usr/src -xzvf /usr/src/chruby-{{ chruby_version }}.tar.gz
   when: chruby_downloaded.changed
   register: chruby_extracted
