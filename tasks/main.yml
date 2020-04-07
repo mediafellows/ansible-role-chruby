@@ -1,16 +1,14 @@
 ---
 
 - name: Create working directory
-  become: true
   file:
-    path: /usr/src
+    path: '{{ chruby_working_dir }}'
     state: directory
 
 - name: Download chruby
-  become: true
   get_url:
-    url: https://github.com/postmodern/chruby/archive/v{{ chruby_version }}.tar.gz
-    dest: /usr/src/chruby-{{ chruby_version }}.tar.gz
+    url: "https://github.com/postmodern/chruby/archive/v{{ chruby_version }}.tar.gz"
+    path: '{{ chruby_working_dir }}/chruby-{{ chruby_version }}.tar.gz'
   when:
     ansible_local is not defined or
     ansible_local.chruby is not defined or
@@ -18,28 +16,27 @@
   register: chruby_downloaded
 
 - name: Extract chruby
-  become: true
-  shell: tar -C /usr/src -xzvf /usr/src/chruby-{{ chruby_version }}.tar.gz
+  shell: "tar -C /usr/src -xzvf {{ chruby_working_dir }}/chruby-{{ chruby_version }}.tar.gz"
   when: chruby_downloaded.changed
   register: chruby_extracted
 
 - name: Install chruby
   become: true
-  shell: cd /usr/src/chruby-{{ chruby_version }}/ && make install
+  shell: "cd {{ chruby_working_dir }}/chruby-{{ chruby_version }}/ && make install"
   when: chruby_extracted.changed
   register: chruby_installed
 
 - name: Clean up chruby sources
-  shell: rm -rf /usr/src/chruby-*
+  shell: 'rm -rf {{ chruby_working_dir }}'
   when: chruby_downloaded.changed
 
 - name: Attach chruby into shell
-  become: true
-  template: src=chruby.sh dest=/etc/profile.d/chruby.sh
+  template:
+    src: chruby.sh
+    dest: /etc/profile.d/chruby.sh
 
-#
-# Setup chruby facts.d
-#
+# Setup chruby facts.d for future runs of this role:
+
 - name: Capture installed chruby version
   shell: >
     executable=/bin/bash source /etc/profile;
@@ -49,8 +46,14 @@
 
 - name: Create ansible facts directory
   become: true
-  file: state=directory recurse=yes path=/etc/ansible/facts.d
+  file:
+    state: directory
+    recurse: yes
+    path: /etc/ansible/facts.d
 
 - name: Set chruby facts
   become: true
-  template: src=chruby.fact dest=/etc/ansible/facts.d/chruby.fact
+  template:
+    src: chruby.fact
+    dest: /etc/ansible/facts.d/chruby.fact
+

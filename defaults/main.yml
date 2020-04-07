@@ -1,2 +1,4 @@
 ---
 chruby_version: '0.3.9'
+
+chruby_working_dir: /tmp/chruby
