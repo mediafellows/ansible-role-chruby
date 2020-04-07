@@ -2,7 +2,7 @@
 galaxy_info:
   author: Marc Jeanson <jeanson@mediapeers.com>
   description: Installs chruby on Ubuntu systems.
-  company: Mediapeers
+  company: Mediafellows GmbH
   license: MIT
   min_ansible_version: 1.4
   platforms:

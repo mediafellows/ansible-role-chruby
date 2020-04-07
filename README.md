@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/mediapeers/ansible-role-chruby.svg?branch=master)](https://travis-ci.com/mediapeers/ansible-role-chruby)
+[![Build Status](https://travis-ci.com/mediafellows/ansible-role-chruby.svg?branch=master)](https://travis-ci.com/mediafellows/ansible-role-chruby)
 
 # Ansible role chruby
 
@@ -23,7 +23,7 @@ Example Playbook:
 
     - hosts: servers
       roles:
-         - { role: innohub-ansible.chruby }
+         - { role: mediafellows.chruby }
 
 Example Role:
 
